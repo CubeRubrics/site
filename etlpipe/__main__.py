@@ -23,8 +23,13 @@ import logging
 import datetime
 
 import mongoengine as me
+
+import urllib3
 import csv
 import argparse
+from dateutil.parser import parse as parsedt
+
+from git import Repo
 
 # Create command arguments
 parser = argparse.ArgumentParser()
@@ -57,3 +62,44 @@ DATA_DIR = os.path.join(args.data_dir)
 if __name__ == '__main__':
     print('Data directory:', DATA_DIR)
 
+    wca_dir = os.path.join(DATA_DIR, 'wca')
+    if not os.path.exists(wca_dir):
+        print(f'Creating WCA download directory {wca_dir}')
+        os.makedirs(wca_dir)
+
+    wca_data_dir = os.path.join(wca_dir, 'pub')
+    if not os.path.exists(wca_data_dir):
+        os.makedirs(wca_data_dir)
+
+    # FIXME: Ensure this initializes a repository right in the right place
+    repo = Repo.init(wca_data_dir, initial_branch='main')
+    print(repo.active_branch)
+
+    print(f'Downloading public export data from {args.wca_api} to {wca_data_dir}')
+    wca_resp = urllib3.request('GET', args.wca_api)
+    print(f'Status of WCA site is {wca_resp.status}')
+    if wca_resp.status == 200:
+        print('Data:')
+        raw_export_meta = wca_resp.data.decode()
+        print(raw_export_meta)
+        print()
+        export_meta = yaml.safe_load(raw_export_meta)
+        export_date = export_meta.get('export_date')
+        if export_date is None:
+            print('Error, no export_date in WCA metadata. exiting')
+            exit()
+
+        elif not isinstance(export_meta['export_date'], datetime.datetime):
+            print(f'Warning, export_date="{export_date}" of type {type(export_date)}, converting to datetime')
+            _dt_raw = str(export_meta['export_date']).strip()
+            export_date = parsedt(_dt_raw)
+
+        export_meta['export_date'] = export_date
+
+        # TODO: Log datetime to a file and determine if a new download is needed
+
+        print('YAML Data:')
+        print(yaml.dump(export_meta))
+
+    else:
+        print(f'WCA site returned status of {wca_resp.status}, aborting download')
