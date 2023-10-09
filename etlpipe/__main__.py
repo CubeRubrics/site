@@ -45,7 +45,7 @@ parser.add_argument('-P', '--port',
                     help='Port for the mongoDB',
                     type=int, default=27017)
 
-parser.add_argument('-w', '--wca-api',
+parser.add_argument('--wca-api',
                     help='URL for the World Cube Association\'s public API',
                     type=str,
                     default='https://www.worldcubeassociation.org/api/v0/export/public')
