@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 """
-Data passing to and from the mongoDB backend will be handled through methods
-outlined in this directory, to preserve consistency.
+ODM - Object-Document Mapper
+
+Translating between python objects and mongoDB documents
 
 ---
 
@@ -28,4 +29,5 @@ import logging
 import datetime
 
 import mongoengine as me
+
 
