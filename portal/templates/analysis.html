@@ -1,0 +1,26 @@
+{%- extends "layouts/main.html" %}
+{%- block body %}
+<div class="container">
+  <h1>Analysis</h1>
+  <p class="lead">
+  {%- if page %}
+  Page for "{{ page }}" in the analysis section
+  {%- else %}
+  Landing page for the analysis section
+  {%- endif %}
+  </p>
+
+  <p class="lead">
+  {%- if page %}
+  <span class="text-warning">Analysis page for "{{ page }}" not implemented yet.</span>
+  {%- else %}
+  This will be the section that relies most on the server backend/javascript
+  for doing the advanced analysis we're working on
+  {%- endif %}
+  </p>
+</div>
+{%- endblock %}
+
+{%- block footer %}
+<small class="text-muted">footer</small>
+{%- endblock %}

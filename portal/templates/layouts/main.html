@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {#- Welcome to Cube Rubrics #}
+    <meta charset="utf-8">
+    {#-
+      TODO: Add in dynamic titles/tags/etc. via Flask.
+      #}
+    <!-- Title -->
+    <title>Cube Rubrics</title>
+
+    <!-- Meta -->
+    <meta name="generator" content="cuberubric">
+    <meta name="description" content="Cube Rubrics">
+    <meta name="keywords" content="rubiks,cube,rubrics,speed">
+    <meta name="author" content="Cube Rubrics Staff team@cuberubrics.org">
+
+    <!-- Style -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="{{ url_for('static', filename='js/popper.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/darkly.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+
+    <!-- Extras -->
+    {%- block style_extras %}
+    {%- endblock %}
+    <!-- Extras end -->
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img
+            src="{{ url_for('static', filename='img/logo.png') }}"
+            alt="Cube Rubrics Logo"
+            style="max-height: 25px; width: auto;"
+            >
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="/news">News</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="/events">Events</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link" href="/stats">Stats</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Analysis</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/analysis">Cube</a>
+                <a class="dropdown-item" href="/analysis/tutorial">Tutorial</a>
+                <a class="dropdown-item" href="/analysis/algorithms">Algorithms</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/analysis/scramble">Scramble</a>
+              </div>
+            </li>
+        </ul>
+
+        <form class="d-flex">
+            <input class="form-control me-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main start -->
+    {%- block body %}
+    {%- endblock %}
+    <!-- Main end -->
+  </body>
+
+  <footer>
+    {%- block footer %}
+    {%- endblock %}
+  </footer>
+</html>

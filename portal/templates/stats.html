@@ -1,0 +1,64 @@
+{%- extends "layouts/main.html" %}
+{%- block style_extras %}
+<style>
+  .cube-time-units:after {
+    content: "]";
+  }
+  .cube-time-units:before {
+    content: " [";
+  }
+</style>
+{%- endblock %}
+
+{%- block body %}
+<div class="container-fluid">
+  <h1>Stats</h1>
+  <p class="lead">
+  Big tables of cubing stats for nerds
+  </p>
+
+  <table class="table table-hover table-secondary text-center">
+    <thead>
+      <tr>
+        <th scope="col">Cuber</th>
+        <th scope="col">Size</th>
+        <th scope="col">Time</th>
+        <th scope="col">Methods</th>
+        <th scope="col">Scramble</th>
+        <th scope="col">Moves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Crystal Calvert </th>
+
+        <td><span class="badge bg-info cube-size" title="Standard size">3x3x3</span></td>
+
+        <td><span class="font-monospace cube-time-val">10.60</span><span class="font-monospace cube-time-units">s</span></td>
+
+        <td>OLL?</td>
+
+        <td class="cube-moves font-monospace">
+            DL2 R2 D2 R2 D R2 U L2 B2 L2 ULU'FDB'DFL'
+        </td>
+
+        <td class="cube-moves font-monospace">
+          x2 y'&emsp;//inspection<br>
+          FR'D'&emsp;//White cross<br>
+          RU'R'&emsp;// 1st pair<br>
+          yU'LUL'&emsp;// 2nd pair<br>
+          R'U2 R y L'UL&emsp;// 3rd pair<br>
+          y' R'URU2R'UR&emsp;// 4th pair<br>
+          U(FRUR'U'F')&emsp;// OLL 45<br>
+          U(R'UR'U'yR'F'R2U' R'UR'FRF)&emsp;//PLL-V
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{%- endblock %}
+
+{%- block footer %}
+<small class="text-muted">footer</small>
+{%- endblock %}
+
