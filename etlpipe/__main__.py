@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 """
+etlpipe - Extraction, Transformation and Loading Pipeline
+
+Moving raw data from various sources into the mongoDB
+
+---
+
 Copyright 2023 Patrick Ingham, Crystal Calvert
 
 This file is part of CubeRubric.
@@ -59,6 +65,7 @@ parser.add_argument('--wca-api',
 args = parser.parse_args()
 
 DATA_DIR = os.path.join(args.data_dir)
+
 if __name__ == '__main__':
     print('Data directory:', DATA_DIR)
 
@@ -68,9 +75,11 @@ if __name__ == '__main__':
         os.makedirs(wca_dir)
 
     wca_data_dir = os.path.join(wca_dir, 'pub')
-    if not os.path.exists(wca_data_dir):
-        os.makedirs(wca_data_dir)
-
+    wca_meta_dir = os.path.join(wca_dir, 'meta')
+    for dir_path in (wca_data_dir, wca_meta_dir):
+        if not osi.path.exists(dir_path):
+            os.makedirs(dir_path)
+    
     # FIXME: Ensure this initializes a repository right in the right place
     repo = Repo.init(wca_data_dir, initial_branch='main')
     print(repo.active_branch)
