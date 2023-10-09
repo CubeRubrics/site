@@ -39,7 +39,6 @@ logger = app.logger
 # NOTE: Beginning of routes / url paths
 @app.route('/')
 def index():
-    mdocs.test_page(title='Test page 1', text='blah blah blah blah blah', author='Bob Dobbs')
     return render_template('index.html')
 
 
